@@ -3,8 +3,9 @@
 namespace {
 
     use SilverStripe\CMS\Controllers\ContentController;
+    use SilverStripe\View\Requirements;
 
-    class PageController extends ContentController
+class PageController extends ContentController
     {
         /**
          * An array of actions that can be accessed via a request. Each array element should be an action name, and the
@@ -26,6 +27,7 @@ namespace {
         protected function init()
         {
             parent::init();
+            Requirements::javascript('themes/bootstrap/javascript/pagination.js',['defer'=> true]);
             // You can include any CSS or JS required by your project here.
             // See: https://docs.silverstripe.org/en/developer_guides/templates/requirements/
         }

@@ -1,5 +1,6 @@
 <?php
 
+use SilverStripe\Assets\Image;
 use \SilverStripe\ORM\DataObject;
 use SilverStripe\Assets\File;
 use \SilverStripe\Forms\FieldList;
@@ -19,15 +20,17 @@ class VideoObject extends DataObject
     private static $has_one = [
         'VideoPage' => VideoPage::class, // Relationship for the page
         'VideoSource' => File::class, // One Video object has a file. will related to database filed
+        'VideoThumbnail'  => Image::class,
     ];
 
     private static $many_many = [
-        'VideoCategories' => VideoCategory::class
+        'VideoCategories' => VideoCategory::class,
     ];
 
 
     private static $owns = [
         'VideoSource',
+        'VideoThumbnail'
     ];
 
     public function getCMSFields()
@@ -36,6 +39,7 @@ class VideoObject extends DataObject
             UploadField::create('VideoSource'),
             TextField::create('Title'),
             TextareaField::create('Description'),
+            UploadField::create('VideoThumbnail'),
             CheckboxSetField::create('VideoCategories', 'Categories', VideoCategory::get())
         );
     }

@@ -7,6 +7,7 @@ class VideoPage extends Page
 {
     private static $has_many = [
         'VideoObjects' => VideoObject::class,
+        'VideoComments' => VideoComment::class,
     ];
 
     public function getCMSFields()
